@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strona nie istnieje · Page not found | Zhyvitsa</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#F5EBDD">
+<!-- Self-contained on purpose: GitHub Pages serves this file for any missing
+     path, so relative asset URLs would resolve against that path and 404 too.
+     No external requests; links use the production domain. -->
+<style>
+:root{--red:#BA2A2A;--paper:#F5EBDD;--ink:#140A09;--muted:#635953;--rule:#8A7F76;
+  --amber-light:#FEB949;--amber:#F9A21F;--amber-deep:#E87400;
+  --ui:'Neue Montreal',"Suisse Int'l",Inter,Helvetica,'Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;
+  background:var(--paper);color:var(--ink);font-family:var(--ui);
+  line-height:1.6;padding:clamp(24px,6vw,64px)}
+main{width:100%;max-width:640px;margin-inline:auto}
+.num{font-size:clamp(3.5rem,12vw,6rem);font-weight:400;line-height:1;
+  letter-spacing:-.045em;color:var(--red);margin:0 0 1.5rem}
+h1{font-weight:500;font-size:clamp(1.9rem,6vw,3rem);line-height:1.02;
+  letter-spacing:-.04em;margin:0 0 .5rem}
+h2{font-weight:400;font-size:clamp(1.3rem,4vw,1.8rem);line-height:1.1;
+  letter-spacing:-.03em;margin:0 0 2rem;color:var(--muted)}
+p{color:var(--muted);margin:0 0 2.2rem;max-width:52ch}
+p span{display:block}
+p span + span{margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--rule);max-width:44ch}
+.links{display:flex;flex-wrap:wrap;gap:.9rem;padding-top:2rem;border-top:1px solid var(--rule)}
+a{display:inline-flex;align-items:center;justify-content:center;min-height:52px;
+  padding:.85rem 1.9rem;font-size:.74rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.16em;text-decoration:none;border:1px solid transparent;color:var(--ink)}
+.solid{background:linear-gradient(135deg,var(--amber-light) 0%,var(--amber) 45%,var(--amber-deep) 100%)}
+.line{border-color:var(--rule)}
+.line:hover{color:var(--red);border-color:var(--red)}
+a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.tel{margin-top:2.5rem;font-size:.78rem;letter-spacing:.04em;color:var(--muted);
+  padding:0;min-height:0;text-transform:none;border:0;display:block}
+.tel a{display:inline;min-height:0;padding:0;border:0;text-transform:none;
+  letter-spacing:.02em;font-size:.95rem;font-weight:500;color:var(--red)}
+</style>
+</head>
+<body>
+<main>
+  <p class="num">404</p>
+  <h1>Tej strony nie ma.</h1>
+  <h2 lang="en">This page does not exist.</h2>
+  <p>
+    <span>Adres jest nieaktualny albo zawiera literówkę. Wróć na stronę główną — wszystko jest na niej.</span>
+    <span lang="en">The address is out of date or contains a typo. Head back to the home page — everything is there.</span>
+  </p>
+  <div class="links">
+    <a class="solid" href="https://zhyvitsa.pl/" hreflang="pl" lang="pl">Strona główna</a>
+    <a class="line" href="https://zhyvitsa.pl/en/" hreflang="en" lang="en">English version</a>
+  </div>
+  <p class="tel">Zhyvitsa · Kwiaciarnia, Warszawa · <a href="tel:+48500669155">+48 500 669 155</a></p>
+</main>
+</body>
+</html>
