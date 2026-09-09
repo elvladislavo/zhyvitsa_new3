@@ -321,3 +321,16 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
   .js .reveal{opacity:1;transform:none}
   .ig:hover .ig-arrow{transform:none}
 }
+
+.foot-credit {
+  font-size: .72rem;
+  color: var(--muted);
+  transition: color .18s ease;
+}
+
+.foot-credit:hover,
+.foot-credit:focus-visible {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
