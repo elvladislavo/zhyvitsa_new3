@@ -110,7 +110,8 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
   font-size:.68rem;font-weight:500;line-height:1.4;
   text-transform:uppercase;letter-spacing:.2em;color:var(--red);
 }
-.band{position:relative;overflow:hidden;padding-block:clamp(64px,8vw,120px);border-top:1px solid var(--rule)}
+.band{position:relative;padding-block:clamp(28px,5vw,64px)}
+.band:last-child{padding-bottom:clamp(64px,10vw,140px)}
 
 .skip{
   position:fixed;left:var(--gutter);top:-100px;z-index:100;
@@ -120,30 +121,48 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
 }
 .skip:focus{top:12px}
 
-/* ---------------------------------------------------------------- 4. Vine */
-.vine{
-  position:absolute;top:0;bottom:0;
-  width:clamp(240px,34vw,480px);
-  pointer-events:none;z-index:0;
-  -webkit-user-select:none;user-select:none;
+/* ------------------------------------------------- 4. Garden + cards
+   A fixed layer (garden.js) grows dark red branches behind the page as it
+   scrolls. Every block of text sits on a near-opaque cream card, so the
+   branches can be busy without ever touching legibility.
+   ------------------------------------------------------------------------ */
+.garden{
+  position:fixed;left:0;top:0;z-index:0;
+  width:100%;height:100vh;height:100lvh;
+  pointer-events:none;display:block;
+  opacity:0;transition:opacity .8s ease;
 }
-.vine svg{display:block;width:100%;height:100%}
-.vine-stem-path,.vine-spiral-path{
-  fill:none;stroke:currentColor;stroke-width:1.6;
-  stroke-linecap:round;vector-effect:non-scaling-stroke;
+.garden.is-ready{opacity:1}
+.garden canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+main,.site-footer{position:relative;z-index:1}
+
+.card{
+  --tick:clamp(12px,1.6vw,18px);
+  position:relative;
+  padding:clamp(28px,5vw,68px);
+  background:rgba(245,235,221,.8);
+  border:1px solid rgba(138,127,118,.42);
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 30px 60px -40px rgba(20,10,9,.35);
 }
-.vine-bud{fill:var(--vine-leaf,currentColor);stroke:none}
-@media (max-width:700px){
-  .vine{width:min(64vw,270px);filter:opacity(.7)}
-  [data-vine="right"]{transform:translateX(26%)}
-  [data-vine="left"]{transform:translateX(-26%)}
+/* text inside see-through cards gets a slightly deeper grey to keep contrast */
+.card{--muted:#51473f}
+/* red corner ticks — the hairline frame from the reference, reduced to its corners */
+.card::before{
+  content:"";position:absolute;inset:-1px;pointer-events:none;
+  --c:linear-gradient(var(--red),var(--red));
+  background:
+    var(--c) left top/var(--tick) 1px no-repeat,var(--c) left top/1px var(--tick) no-repeat,
+    var(--c) right top/var(--tick) 1px no-repeat,var(--c) right top/1px var(--tick) no-repeat,
+    var(--c) left bottom/var(--tick) 1px no-repeat,var(--c) left bottom/1px var(--tick) no-repeat,
+    var(--c) right bottom/var(--tick) 1px no-repeat,var(--c) right bottom/1px var(--tick) no-repeat;
 }
+@media (max-width:600px){.card{padding:26px 22px}}
 
 /* -------------------------------------------------------------- 5. Header */
 .site-header{
   position:sticky;top:0;z-index:60;
   background:var(--paper);
-  border-bottom:1px solid var(--rule);
+  border-bottom:1px solid rgba(138,127,118,.5);
 }
 .header-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:var(--header-h)}
 .brand{display:inline-flex;align-items:center;gap:.7rem;color:var(--ink);min-height:44px}
@@ -209,8 +228,9 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
 }
 
 /* ---------------------------------------------------------------- 6. Hero */
-.hero{position:relative;overflow:hidden;padding-block:clamp(64px,11vh,140px) clamp(64px,9vw,130px)}
-.hero-copy{max-width:min(100%,980px)}
+.hero{position:relative;padding-block:clamp(40px,9vh,120px) clamp(72px,10vw,140px)}
+.hero-copy{max-width:min(100%,960px)}
+.hero-copy.card{padding:clamp(30px,5.5vw,76px)}
 .hero .eyebrow{margin-bottom:clamp(1.4rem,3vw,2.2rem)}
 .hero h1{margin-bottom:clamp(2rem,3.5vw,2.8rem)}
 .actions{display:flex;flex-wrap:wrap;gap:.9rem}
@@ -230,8 +250,21 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
 .btn-line:hover{color:var(--red);border-color:var(--red)}
 @media (min-width:1000px){
   .hero{min-height:calc(100svh - var(--header-h));display:flex;align-items:center}
-  .hero-copy{padding-left:clamp(0px,4vw,72px)}
 }
+.scroll-hint{
+  position:absolute;left:0;right:0;bottom:clamp(18px,3vh,32px);z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+  font-size:.64rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;
+  color:var(--muted);text-align:center;pointer-events:none;
+  transition:opacity .6s ease;
+}
+.scroll-hint span{
+  display:block;width:1px;height:34px;order:2;
+  background:linear-gradient(var(--amber-deep),transparent);
+  transform-origin:top;animation:hintLine 2.2s ease-in-out infinite;
+}
+.scroll-hint.is-gone{opacity:0}
+@keyframes hintLine{0%{transform:scaleY(0)}50%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 
 /* -------------------------------------------------------------- 7. Offers */
 .offer-grid{display:grid;gap:clamp(1.75rem,4vw,4.5rem)}
@@ -242,15 +275,33 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
 .offer-head h2{margin-bottom:1.4rem;max-width:14ch}
 .offer-icon{display:block;color:var(--red);margin-top:clamp(1.2rem,2.4vw,2rem)}
 .offer-icon svg{width:54px;height:54px}
-.offer-body > p{color:var(--muted);max-width:56ch;font-size:clamp(1rem,.97rem + .3vw,1.12rem);text-wrap:pretty;
+.offer-body > p{max-width:56ch;font-size:clamp(1rem,.97rem + .3vw,1.12rem);text-wrap:pretty;
   margin-bottom:clamp(1.75rem,3vw,2.6rem)}
-.items{margin-top:clamp(1.75rem,3vw,2.5rem);display:grid;gap:clamp(1.6rem,2.8vw,2.15rem)}
-.items li{display:grid;gap:.3rem}
+.items{margin-top:clamp(1.75rem,3vw,2.5rem);display:grid;gap:0 clamp(1.5rem,3vw,2.5rem);counter-reset:item}
+.items li{
+  display:grid;gap:.35rem;position:relative;
+  padding:clamp(1.05rem,1.8vw,1.35rem) 0 clamp(1.05rem,1.8vw,1.35rem) 2.4rem;
+  border-top:1px solid rgba(138,127,118,.45);
+  counter-increment:item;
+}
+.items li::before{
+  content:counter(item,decimal-leading-zero);
+  position:absolute;left:0;top:clamp(1.15rem,1.9vw,1.45rem);
+  font-size:.66rem;font-weight:600;letter-spacing:.12em;color:var(--amber-deep);
+  font-variant-numeric:tabular-nums;
+}
+.items li::after{
+  content:"";position:absolute;left:0;top:-1px;height:1px;width:0;
+  background:var(--red);transition:width .45s ease;
+}
+.items li:hover::after{width:100%}
 .items h3{color:var(--ink)}
 .items p{color:var(--muted);font-size:.96rem;max-width:60ch;text-wrap:pretty}
+.offer-body > p{color:#4f4540}
 @media (min-width:860px){
   .offer-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:start}
   .items{margin-top:0}
+  .offer-head{position:sticky;top:calc(var(--header-h) + 32px)}
 }
 
 /* ------------------------------------------------------------- 8. Gallery */
@@ -262,7 +313,7 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
 .ig{
   display:flex;flex-direction:column;align-items:flex-start;
   padding:clamp(1.75rem,3.5vw,2.75rem);
-  border:1px solid var(--rule);background:var(--panel);
+  border:1px solid rgba(138,127,118,.55);background:var(--panel);
   transition:border-color .22s ease,background-color .22s ease;
 }
 .ig:hover{border-color:var(--red)}
@@ -296,7 +347,10 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
 @media (min-width:900px){.contact-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
 
 /* ------------------------------------------------------------- 10. Footer */
-.site-footer{border-top:1px solid var(--rule);padding-block:clamp(2.25rem,4vw,3.25rem)}
+.site-footer{
+  border-top:1px solid rgba(138,127,118,.5);padding-block:clamp(2.25rem,4vw,3.25rem);
+  background:rgba(245,235,221,.95);
+}
 .footer-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem}
 .footer-brand{
   font-family:var(--script);font-size:2rem;color:var(--red);line-height:1;
@@ -320,6 +374,7 @@ h3{font-size:clamp(1.02rem,.98rem + .3vw,1.18rem);letter-spacing:-.012em;line-he
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
   .js .reveal{opacity:1;transform:none}
   .ig:hover .ig-arrow{transform:none}
+  .scroll-hint span{animation:none}
 }
 
 .foot-credit {

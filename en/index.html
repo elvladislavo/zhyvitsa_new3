@@ -89,7 +89,7 @@
         "itemListElement": [
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bouquets", "description": "Signature, classic and wedding bouquets, dried and preserved flowers, and standing deliveries for business — from fresh seasonal flowers, made to order." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Floristry master classes", "description": "Our own bouquet-making classes as well as classes run together with masters of other crafts." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Decorations", "description": "Wedding decoration, corporate event styling, interior floristry and flower subscriptions, and funeral arrangements." } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Decorations", "description": "Wedding decoration, corporate event styling, interior floristry and flower subscriptions." } }
         ]
       }
     },
@@ -119,6 +119,8 @@
 <body>
 
 <a class="skip" href="#top">Skip to content</a>
+
+<div class="garden" id="garden" aria-hidden="true"></div>
 
 <header class="site-header" id="siteHeader">
   <div class="shell header-bar">
@@ -154,11 +156,8 @@
 <main id="main">
 
 <section class="hero" id="top">
-  <div class="vine" data-vine="right" aria-hidden="true" style="right:0; opacity:.5; color:var(--red); --vine-leaf:var(--red);">
-    <!-- populated at runtime by VineGeometry.render() -->
-  </div>
   <div class="shell">
-    <div class="hero-copy">
+    <div class="hero-copy card">
       <p class="eyebrow">Florist and decoration studio · Warsaw</p>
       <h1>Flowers that tell your story</h1>
       <p class="actions">
@@ -167,13 +166,12 @@
       </p>
     </div>
   </div>
+  <p class="scroll-hint" aria-hidden="true"><span></span>Scroll — watch it grow</p>
 </section>
 
 <section class="band" id="bouquets">
-  <div class="vine" data-vine="left" aria-hidden="true" style="left:-7%; opacity:.4; color:var(--red); --vine-leaf:var(--red);">
-    <!-- populated at runtime by VineGeometry.render() -->
-  </div>
-  <div class="shell offer-grid">
+  <div class="shell">
+  <div class="card offer-grid">
     <div class="offer-head reveal">
       <span class="num" aria-hidden="true">01</span>
       <h2>Bouquets</h2>
@@ -205,10 +203,12 @@
       </ul>
     </div>
   </div>
+  </div>
 </section>
 
 <section class="band" id="workshops">
-  <div class="shell offer-grid">
+  <div class="shell">
+  <div class="card offer-grid">
     <div class="offer-head reveal">
       <span class="num" aria-hidden="true">02</span>
       <h2>Master classes</h2>
@@ -232,13 +232,12 @@
       </ul>
     </div>
   </div>
+  </div>
 </section>
 
 <section class="band" id="decorations">
-  <div class="vine" data-vine="right" aria-hidden="true" style="right:-8%; opacity:.36; color:var(--red); --vine-leaf:var(--red);">
-    <!-- populated at runtime by VineGeometry.render() -->
-  </div>
-  <div class="shell offer-grid">
+  <div class="shell">
+  <div class="card offer-grid">
     <div class="offer-head reveal">
       <span class="num" aria-hidden="true">03</span>
       <h2>Decorations</h2>
@@ -259,17 +258,15 @@
           <h3>Interiors and subscriptions</h3>
           <p>Recurring arrangements for homes, offices, hotels and restaurants.</p>
         </li>
-        <li>
-          <h3>Funeral arrangements</h3>
-          <p>Wreaths and bouquets prepared with respect and discretion.</p>
-        </li>
       </ul>
     </div>
+  </div>
   </div>
 </section>
 
 <section class="band" id="gallery">
-  <div class="shell gallery-grid">
+  <div class="shell">
+  <div class="card gallery-grid">
     <div class="head reveal">
       <p class="eyebrow">Portfolio</p>
       <h2>Our work lives on Instagram</h2>
@@ -293,13 +290,12 @@
       </a>
     </div>
   </div>
+  </div>
 </section>
 
 <section class="band" id="contact">
-  <div class="vine" data-vine="left" aria-hidden="true" style="left:-7%; opacity:.34; color:var(--red); --vine-leaf:var(--red);">
-    <!-- populated at runtime by VineGeometry.render() -->
-  </div>
-  <div class="shell contact-grid">
+  <div class="shell">
+  <div class="card contact-grid">
     <div class="head reveal">
       <p class="eyebrow">Contact</p>
       <h2>Let's talk about your event</h2>
@@ -320,6 +316,7 @@
         <span class="value"><a href="https://www.instagram.com/zhyvitsa_/" target="_blank" rel="noopener">@zhyvitsa_</a></span>
       </span>
     </address>
+  </div>
   </div>
 </section>
 
