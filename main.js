@@ -115,25 +115,11 @@ function initNav() {
 }
 
 /* ===========================================================================
- * 4. SCROLL HINT — fades once the page starts moving
- * ========================================================================= */
-
-function initHint() {
-  const hint = document.querySelector('.scroll-hint');
-  if (!hint) return;
-  const off = () => {
-    if (window.scrollY > 40) { hint.classList.add('is-gone'); window.removeEventListener('scroll', off); }
-  };
-  window.addEventListener('scroll', off, { passive: true });
-}
-
-/* ===========================================================================
  * Boot
  * ========================================================================= */
 
 function boot() {
   try { initGarden(document.getElementById('garden')); } catch (err) { console.warn('[zhyvitsa] garden skipped:', err); }
-  try { initHint(); }    catch (err) { /* cosmetic */ }
   try { initReveals(); } catch (err) { console.warn('[zhyvitsa] reveals skipped:', err); }
   try { initNav(); }     catch (err) { console.warn('[zhyvitsa] nav skipped:', err); }
 }

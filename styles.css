@@ -251,20 +251,6 @@ main,.site-footer{position:relative;z-index:1}
 @media (min-width:1000px){
   .hero{min-height:calc(100svh - var(--header-h));display:flex;align-items:center}
 }
-.scroll-hint{
-  position:absolute;left:0;right:0;bottom:clamp(18px,3vh,32px);z-index:1;
-  display:flex;flex-direction:column;align-items:center;gap:.7rem;
-  font-size:.64rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;
-  color:var(--muted);text-align:center;pointer-events:none;
-  transition:opacity .6s ease;
-}
-.scroll-hint span{
-  display:block;width:1px;height:34px;order:2;
-  background:linear-gradient(var(--amber-deep),transparent);
-  transform-origin:top;animation:hintLine 2.2s ease-in-out infinite;
-}
-.scroll-hint.is-gone{opacity:0}
-@keyframes hintLine{0%{transform:scaleY(0)}50%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 
 /* -------------------------------------------------------------- 7. Offers */
 .offer-grid{display:grid;gap:clamp(1.75rem,4vw,4.5rem)}
@@ -374,7 +360,6 @@ main,.site-footer{position:relative;z-index:1}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
   .js .reveal{opacity:1;transform:none}
   .ig:hover .ig-arrow{transform:none}
-  .scroll-hint span{animation:none}
 }
 
 .foot-credit {

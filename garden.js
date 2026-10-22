@@ -28,7 +28,7 @@ const FINAL = 0.55;             // opacity a finished strike settles to
 const GROW_SHARE = 0.86;        // part of a strike's slot spent growing; the rest settles
 const N = 4;                    // strikes per page (fewer = airier end state)
 const INTRO_MS = 2200;
-const RECEDE = 1;            // how much older strikes fade when a new one lands
+const RECEDE = 0.62;            // how much older strikes fade when a new one lands
 
 // edges: 0 top, 1 bottom, 2 left, 3 right · position along edge · heading jitter
 const SCRIPT = [
